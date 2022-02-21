@@ -1,8 +1,6 @@
 <script setup>
 import { MenuAlt2Icon, CollectionIcon, LightningBoltIcon, FireIcon, HeartIcon } from '@heroicons/vue/solid';
 import { RouterLink, RouterView } from 'vue-router'
-
-
 </script>
 
 <template>
@@ -15,19 +13,19 @@ import { RouterLink, RouterView } from 'vue-router'
       </RouterLink>
       <nav> <!--NavBar Desktop-->
         <div class="flex items-center justify-center">
-        <RouterLink to="/big-shop">
+        <RouterLink to="/bigshop">
           <div class="flex my-0 mx-3 items-center justify-center">
             <CollectionIcon class="w-8 h-8 mx-1"></CollectionIcon>
             <span class="text-lg">Le Shop</span>
           </div>
         </RouterLink>
-        <RouterLink to="/">
+        <RouterLink to="/assos">
           <div class="flex my-0 mx-3 items-center justify-center">
             <LightningBoltIcon class="w-8 h-8 mx-1"></LightningBoltIcon>
             <span class="text-lg">Les Assos</span>
           </div>
         </RouterLink>
-        <RouterLink to="/">
+        <RouterLink to="/aboutus">
           <div class="flex my-0 mx-3 items-center justify-center">
             <FireIcon class="w-8 h-8 mx-1"></FireIcon>
             <span class="text-lg">Les Devs</span>
