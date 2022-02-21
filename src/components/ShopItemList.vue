@@ -80,7 +80,13 @@ const StaticItemDisplay = [
   },
 ]
 
+
 export default {
+    data(){
+        return {
+
+        }
+    },
     components: {
         HashtagIcon,
         AnnotationIcon,
@@ -96,7 +102,7 @@ export default {
 </script>
 
 <template>
-    <section class="w-full h-screen flex flex-col items-center justify-center"> <!-- SHOP WRAPPER -->
+    <section class="aspect-video flex flex-col items-center justify-center"> <!-- SHOP WRAPPER -->
         <div class="w-4/5 h-96 bg-blue-200 flex flex-col justify-evenly items-start p-8"> <!-- ASSOS PRESENTATIONS WRAPPER -->
             <h2 class="w-full text-center text-6xl uppercase tracking-widest text-red-500">Nom de L'assos</h2>
             <div class="w-2/4"> <!-- PRESENTATION TEXT WRAPPER - ALL THE CONTENT IS GOING TO BE DINAMICALLY GENERATED THROUGH API CALLS-->
