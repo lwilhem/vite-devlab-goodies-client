@@ -6,11 +6,12 @@ import ShopFooterVue from './components/ShopFooter.vue';
 import ShopTop from './components/ShopTop.vue';
 import HomePage from './components/HomePage.vue';
 import ShopArticleVue from './components/ShopArticle.vue';  
-import Header from './components/Header.vue'
-import ShopPanier from './components/ShopPanier.vue'
+import ShopPanier from './components/ShopPanier.vue';
 </script>
 
 <template>
+
+  <!-- <ShopArticleVue></ShopArticleVue> -->
   
   <Header></Header>
   <ShopPanier></ShopPanier>
