@@ -32,10 +32,6 @@ import { RouterLink } from 'vue-router'
           </div>
         </RouterLink>
         </div>
-        <div class="flex my-0 mx-3 items-center justify-center">
-            <UserIcon class="w-8 h-8 mx-1"></UserIcon>
-            <CogIcon class="w-8 h-8 mx-1"></CogIcon>
-        </div>
       </nav>
   </header>
 </template>

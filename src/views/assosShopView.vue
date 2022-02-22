@@ -1,6 +1,7 @@
 <script setup>
 import { HashtagIcon, AnnotationIcon, BellIcon } from '@heroicons/vue/solid'
 import { RouterLink } from 'vue-router';
+import AssosItemList from '../components/AssosItemList.vue';
 </script>
 
 <template>
@@ -30,7 +31,12 @@ import { RouterLink } from 'vue-router';
             </a>
         </div>
     </section>
-    <RouterLink to="/assos">
-        <span>back to list</span>
-    </RouterLink>
+    <AssosItemList></AssosItemList>
+    <div class="w-full flex items-center justify-center mb-6">
+        <RouterLink to="/assos">
+            <div class="w-fit bg-indigo-700 px-8 py-4 rounded-md text-center">
+                <span class="text-white uppercase">back to Assos list</span>
+            </div>
+        </RouterLink>
+    </div>
 </template>
