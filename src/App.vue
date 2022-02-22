@@ -1,5 +1,5 @@
 <script setup>
-import { MenuAlt2Icon, CollectionIcon, LightningBoltIcon, FireIcon, HeartIcon } from '@heroicons/vue/solid';
+import { MenuAlt2Icon, CollectionIcon, LightningBoltIcon, FireIcon, HeartIcon, UserIcon, CogIcon } from '@heroicons/vue/solid';
 import { RouterLink, RouterView } from 'vue-router'
 </script>
 
@@ -11,7 +11,7 @@ import { RouterLink, RouterView } from 'vue-router'
           <h1 class="text-xl uppercase">goodies</h1>
         </div>
       </RouterLink>
-      <nav> <!--NavBar Desktop-->
+      <nav class="flex items-center justify-between"> <!--NavBar Desktop-->
         <div class="flex items-center justify-center">
         <RouterLink to="/bigshop">
           <div class="flex my-0 mx-3 items-center justify-center">
@@ -31,6 +31,10 @@ import { RouterLink, RouterView } from 'vue-router'
             <span class="text-lg">Les Devs</span>
           </div>
         </RouterLink>
+        </div>
+        <div class="flex my-0 mx-3 items-center justify-center">
+            <UserIcon class="w-8 h-8 mx-1"></UserIcon>
+            <CogIcon class="w-8 h-8 mx-1"></CogIcon>
         </div>
       </nav>
   </header>

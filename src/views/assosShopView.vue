@@ -1,10 +1,11 @@
 <script setup>
 import { HashtagIcon, AnnotationIcon, BellIcon } from '@heroicons/vue/solid'
+import { RouterLink } from 'vue-router';
 </script>
 
 <template>
     <section class="aspect-video flex flex-col items-center justify-center"> <!-- SHOP WRAPPER -->
-        <div class="w-4/5 h-96 bg-blue-200 flex flex-col justify-evenly items-start p-8"> <!-- ASSOS PRESENTATIONS WRAPPER -->
+        <div class="w-4/5 h-96 bg-blue-200 flex flex-col justify-evenly items-start p-8 my-8"> <!-- ASSOS PRESENTATIONS WRAPPER -->
             <h2 class="w-full text-center text-6xl uppercase tracking-widest text-red-500">Nom de L'assos</h2>
             <div class="w-2/4"> <!-- PRESENTATION TEXT WRAPPER - ALL THE CONTENT IS GOING TO BE DINAMICALLY GENERATED THROUGH API CALLS-->
                 <p class="text-xm"> 
@@ -29,4 +30,7 @@ import { HashtagIcon, AnnotationIcon, BellIcon } from '@heroicons/vue/solid'
             </a>
         </div>
     </section>
+    <RouterLink to="/assos">
+        <span>back to list</span>
+    </RouterLink>
 </template>
