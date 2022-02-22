@@ -6,11 +6,13 @@ import ShopFooterVue from './components/ShopFooter.vue';
 
 import ShopArticleVue from './components/ShopArticle.vue';  
 
+import ShopSingleArticleVue from './components/ShopSingleArticle.vue';
+
 </script>
 
 <template>
 
-  <ShopArticleVue></ShopArticleVue>
+  <ShopSingleArticleVue></ShopSingleArticleVue>
   
   
 </template>
