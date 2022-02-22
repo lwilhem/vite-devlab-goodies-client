@@ -2,9 +2,11 @@
 import { HashtagIcon, AnnotationIcon, BellIcon } from '@heroicons/vue/solid'
 import { RouterLink } from 'vue-router';
 import AssosItemList from '../components/AssosItemList.vue';
+import ShopFilter from '../components/ShopFilter.vue';
 </script>
 
 <template>
+    <ShopFilter></ShopFilter>
     <section class="aspect-video flex flex-col items-center justify-center"> <!-- SHOP WRAPPER -->
         <div class="w-4/5 h-96 bg-blue-200 flex flex-col justify-evenly items-start p-8 my-8"> <!-- ASSOS PRESENTATIONS WRAPPER -->
             <h2 class="w-full text-center text-6xl uppercase tracking-widest text-red-500">Nom de L'assos</h2>

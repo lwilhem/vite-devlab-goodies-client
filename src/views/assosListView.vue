@@ -5,6 +5,8 @@ import { RouterLink } from 'vue-router';
 
 <template>
 <RouterLink to="/assos/name">
-    <span>link to assos Shop</span>
+    <div class="bg-indigo-700 w-fit py-4 px-12 flex items-center justify-center rounded-md">
+        <span class="text-slate-100">link to assos Shop</span>
+    </div>
 </RouterLink>
 </template>

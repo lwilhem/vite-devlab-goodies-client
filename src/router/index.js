@@ -28,8 +28,12 @@ const router = createRouter({
             path: '/assos/name',
             name: 'assos-shop',
             component: () => import('../views/assosShopView.vue')
+        },
+        {
+            path: '/bigshop/itemname',
+            name: 'shop-item',
+            component: () => import('../views/ShopItem.vue')
         }
-
     ]
 })
 

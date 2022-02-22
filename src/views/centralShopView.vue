@@ -1,8 +1,10 @@
 <script setup>
 import ShopItemListVue from '../components/ShopItemList.vue';
+import ShopFilter from '../components/ShopFilter.vue';
 </script>
 
 <template>
+    <ShopFilter></ShopFilter>
     <ShopItemListVue></ShopItemListVue>
     <section class="w-full my-2 flex items-center justify-center">
         <div class="flex">
