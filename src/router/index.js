@@ -15,6 +15,11 @@ const router = createRouter({
             component: () => import('../views/centralShopView.vue'),
         },
         {
+            path: '/bigshop/panier',
+            name: 'big-shop-panier',
+            component: () => import('../components/PanierShopItem.vue'),
+        },
+        {
             path: '/aboutus',
             name: 'about-dev',
             component: () => import('../views/aboutView.vue'),
