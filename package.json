@@ -17,6 +17,7 @@
     "vue3-carousel": "^0.1.36"
   },
   "devDependencies": {
+    "@iconify/vue": "^3.2.1",
     "@vitejs/plugin-vue": "^2.0.0",
     "autoprefixer": "^10.4.2",
     "postcss": "^8.4.5",

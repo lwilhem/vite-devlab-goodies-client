@@ -9,8 +9,8 @@ import {ChevronRightIcon} from '@heroicons/vue/solid';
     <section id ="shoppage" class="h-screen">
             
         <img src="" v-show="show">
-        <div class="grid grid-cols-1 px-4 tel:grid-cols-2 tel:px-28">
-            <ul class="tel:hidden flex flex-col items-center">
+        <div class="grid grid-cols-1 px-4 tablet:grid-cols-2 tablet:px-28">
+            <ul class="tablet:hidden flex flex-col items-center">
                 <h1 class="text-4xl">Sweat à capuche</h1>
                 <div class="inline-flex">
                     <form action="">
@@ -38,8 +38,8 @@ import {ChevronRightIcon} from '@heroicons/vue/solid';
                 <carrouselVue></carrouselVue>
             </ul>
             <ul class="flex flex-col items-center justify-between pt-8 pb-16">
-                <h1 class="text-4xl hidden tel:flex">Sweat à capuche</h1>
-                <div class="hidden tel:inline-flex">
+                <h1 class="text-4xl hidden tablet:flex">Sweat à capuche</h1>
+                <div class="hidden tablet:inline-flex">
                     <form action="">
                         <label for="quantity" class="inline-block text-2xl">Taille</label>
                         <select id="size" class="w-12 text-2xl" v-model="size">
@@ -73,7 +73,7 @@ import {ChevronRightIcon} from '@heroicons/vue/solid';
                 </div>
             </ul>
         </div>
-        <div class="grid grid-cols-1 px-4 tel:grid-cols-2 tel:grid-rows-2 tel:px-28">
+        <div class="grid grid-cols-1 px-4 tablet:grid-cols-2 tablet:grid-rows-2 tablet:px-28">
             <h2 class="mt-6 mb-12 text-4xl text-center">À propos de cet article</h2>
             <p class="text-base row-start-2 col-span-1">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
             <br>

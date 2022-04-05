@@ -1,8 +1,11 @@
 <script setup>
 import { RouterLink } from 'vue-router';
+import navbar from '../components/Navbar.vue';
+
 </script>
 
 <template>
+<navbar></navbar>
     <section class=" px-4  flex grid-cols-1 grid-rows-2 laptop:flex-row justify-between h-auto py-28 laptop:px-28"> <!-- SHOP WRAPPER -->
         <div class="w-full col-span-1 row-span-1 laptop:w-3/6 flex flex-col justify-between py-16 laptop:pr-8">
             <h1 class="text-red-500 text-4xl row-1 text-center tel:text-5xl laptop:text-6xl laptop:text-right">&lt;3 GOODIES</h1>
