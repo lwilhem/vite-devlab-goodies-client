@@ -1,8 +1,11 @@
-<script>
-import ShopFilter from "../components/ShopFilter.vue";
+<script>            
+import ShopFilter from "    ./components/ShopFilter.vue";
+import TrendingItemVue from "./components/TrendingItem.vue ";
+
 
 </script>
 <template>
+    <TrendingItemVue></TrendingItemVue>
     <ShopFilter></ShopFilter>
     <div class="flex flex-co ml-32 mr-80 px-64">
         <h2 class="mt-6 mb-12 text-4xl">À propos de cet article</h2>

@@ -7,7 +7,7 @@ import Shopfooter from './components/Shopfooter.vue';
 <template>
   <NavbarVue></NavbarVue>
   <RouterView></RouterView>
-  <!-- <Shopfooter></Shopfooter> -->
+   <Shopfooter></Shopfooter>
 </template>
 
 <style>

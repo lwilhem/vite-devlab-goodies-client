@@ -4,13 +4,13 @@ import { StaticItemDisplay } from '../utils/staticItem';
 </script>
 
 <template>
-    <section class="w-full h-auto p-8 flex flex-wrap items-center justify-center">
+    <section class="tablet:w-full tablet:h-auto tablet:p-8 tablet:flex tablet:flex-wrap tablet:items-center tablet:justify-center flex flex-wrap">
         <article v-for="item in StaticItemDisplay" :key="item.id" class="w-1/5 bg-slate-50 p-2 flex flex-col items-center justify-center m-4 rounded-md border-slate-50 drop-shadow-lg hover:drop-shadow-xl"> <!-- ITEM DISPLAY WRAPPER -->
             <div>   <!-- ITEM IMAGE DISPLAY -->
                 <img :src="item.imageSrc" :alt="item.imageAlt">
             </div>
             <div>
-                <div class="flex flex-col">
+                <div class="tablet:flex tablet:flex-col flex-wrap">
                     <h3>
                         <a :href="item.href" class="flex items-center justify-evenly">
                             <span>

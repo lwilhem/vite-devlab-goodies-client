@@ -8,9 +8,9 @@ import ShopFilter from '../components/ShopFilter.vue';
 <template>
     <ShopFilter></ShopFilter>
     <section class="aspect-video flex flex-col items-center justify-center"> <!-- SHOP WRAPPER -->
-        <div class="w-4/5 h-96 bg-blue-200 flex flex-col justify-evenly items-start p-8 my-8"> <!-- ASSOS PRESENTATIONS WRAPPER -->
-            <h2 class="w-full text-center text-6xl uppercase tracking-widest text-red-500">Nom de L'assos</h2>
-            <div class="w-2/4"> <!-- PRESENTATION TEXT WRAPPER - ALL THE CONTENT IS GOING TO BE DINAMICALLY GENERATED THROUGH API CALLS-->
+        <div class="bg-red tablet:bg-red tablet:w-4/5 tablet:h-96 tablet:bg-blue-200 tablet:flex tablet:flex-col tablet:justify-evenly tablet:items-start tablet:p-8 tablet:my-8"> <!-- ASSOS PRESENTATIONS WRAPPER -->
+            <h2 class="tablet:w-full tablet:text-center tablet:text-6xl tablet:uppercase tablet:tracking-widest tablet:text-red-500 pt-6 text-center ">Nom de L'assos</h2>
+            <div class="tablet:w-2/4 m-7"> <!-- PRESENTATION TEXT WRAPPER - ALL THE CONTENT IS GOING TO BE DINAMICALLY GENERATED THROUGH API CALLS-->
                 <p class="text-xm"> 
                     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
                     invidunt ut labore et dolore magna

@@ -1,14 +1,14 @@
 <template>
-    <section class="h-auto px-28 flex flex-col pb-6">
+    <section class=" tablet:h-auto tablet:px-28 tablet:flex tablet:flex-col tablet:pb-6 grid-1">
             <div class=" px-10 inline-flex">
                 <div class="">
-                    <img src="../assets/img_02.png" alt="" class="h-96">
+                    <img src="../assets/img_02.png" alt="" class="tablet:h-96 h-67">
                 </div>
                 <div class="flex items-center">
-                    <h1 class="text-5xl -tracking-tighter font-semibold	pl-40">LA BOUTIQUE !</h1>
+                    <h1 class="text-5xl -tracking-tighter font-semibold	tablet:pl-40 pl-20">LA BOUTIQUE !</h1>
                 </div>
             </div>
-            <div class="inline-flex justify-end gap-10">
+            <div class="tablet:inline-flex justify-end gap-10">
                 <p class="">Filtrer par :</p>
                 <button class="inline-flex items-center">
                     Taille
