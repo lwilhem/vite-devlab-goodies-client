@@ -1,7 +1,7 @@
 <script setup>
 import { RouterLink } from 'vue-router';
 import ShopFilter from '../components/ShopFilter.vue';
-import trendingItem from '../components/TrendingItem';
+import trendingItem from '../components/TrendingItem.vue';
 </script>
 
 <template>

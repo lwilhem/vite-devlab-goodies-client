@@ -2,8 +2,8 @@
 import navbar from '../components/Navbar.vue';
 </script>
 <template>
-<navbar></navbar>
   <div class="bg-white">
+      
     <div class="pt-6">
         <!-- <nav aria-label="Breadcrumb">
             <ol role="list" class="max-w-2xl mx-auto px-4 flex items-center space-x-2 sm:px-6 lg:max-w-7xl lg:px-8">

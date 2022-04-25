@@ -5,48 +5,52 @@ import { RouterLink } from 'vue-router';
 </script>
 
 <template>
-    <div class="bg-[url('src/assets/category.png')] bg-cover">
+    <div class="bg-red-light">
         <div class="flex flex-row my-8 mx-8 mt-8 text-5xl">
-            <h2 class=" font-semiboldml-60  mt-7   text-black text-xl">Product Type</h2>
-                <span class="w-full bg-black h-3  my-8 mx-10 mt-8 "></span>
+            <h2 class=" font-semiboldml-60  mt-7 w-40 text-black text-xl">Product Type</h2>
+                <span class="w-screen bg-black h-3  my-8 mx-10 mt-8 "></span>
             </div>
-                <section class="tablet:w-full h-auto tablet:p-8 flex flex-wrap items-center justify-center">
-                    <article v-for="item in StaticItemDisplay" :key="item.id" class="w-1/5  bg-slate-50 tablet:p-2 flex flex-col items-center justify-center m-4 rounded-md border-slate-50 drop-shadow-lg hover:drop-shadow-xl"> <!-- ITEM DISPLAY WRAPPER -->
-                        <div>   <!-- ITEM IMAGE DISPLAY -->
-                                <img :src="item.imageSrc" :alt="item.imageAlt">
+                <section class="tablet:w-full h-auto tablet:p-8 flex flex-wrap items-center justify-center gap-10">
+                    <article v-for="product in StaticItemDisplay" :key="product.id" class="group relative">
+                        <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+                            <img :src="product.imageSrc" :alt="product.imageAlt" class="w-full h-full object-center object-cover lg:w-full lg:h-full" />
+                        </div>
+                        <div class="mt-4 flex justify-between">
+                            <div>
+                                <h3 class="text-sm text-gray-700"></h3>
                             </div>
-                                <div>
                         </div>
                     </article>
                 </section>
-            <section class="w-full h-auto tablet:p-8 flex flex-wrap items-center justify-center">
-                <article v-for="item in StaticItemDisplay" :key="item.id" class="w-1/5 bg-slate-50 tablet:p-2 flex flex-col items-center justify-center m-4 rounded-md border-slate-50 drop-shadow-lg hover:drop-shadow-xl">
-                  <!-- ITEM DISPLAY WRAPPER -->
-                    <div>   <!-- ITEM IMAGE DISPLAY -->
-                        <img :src="item.imageSrc" :alt="item.imageAlt">
-                    </div>
-                    <div>
+            <div class="bg-red-light">
+        <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+            <h2 class="text-4xl font-extrabold tracking-tight text-gray-900 text-center">Liste des associations</h2>
+        <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
 
-                        <div class="flex flex-col">
-                            <h3>
-                                <a :href="item.href" class="flex items-center justify-evenly">
-                                    <span>
-                                        {{ item.name }}
-                                    </span>
-                                  <RouterLink to="/bigshop/itemname">
-                                    <div class=" flex justify-center content-center">
-                                         <h2>Voir plus </h2>
-                                        <ArrowCircleRightIcon class="w-4 h-4"></ArrowCircleRightIcon>
-                                    </div>
-                                    </RouterLink>
-                                </a>
-                            </h3>
-                            <p>{{ item.color }}</p>
-                            <p>{{ item.price }}</p>
-                        </div>
+        
+        
+            <article v-for="product in StaticItemDisplay" :key="product.id" class="group relative">
+                <RouterLink to="/assos/name">
+                <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+                    <img :src="product.imageSrc" :alt="product.imageAlt" class="w-full h-full object-center object-cover lg:w-full lg:h-full" />
+                </div>
+                <div class="mt-4 flex justify-between">
+                    <div>
+                    <h3 class="text-sm text-gray-700">
+                        <a :href="product.href">
+                        <span aria-hidden="true" class="absolute inset-0"> </span>
+                        <h4 class="text-3xl">{{ product.name }}</h4>
+                        </a>
+                    </h3>
+                    <p class="mt-1 text-sm text-gray-500">{{ product.color }}</p>
                     </div>
-                </article>
-        </section>
+                <p class="text-sm font-medium text-gray-900">{{ product.price }}</p>
+            </div>
+            </RouterLink>
+            </article>
+        </div>
+        </div>
+    </div>
 
         <a>
             <img sr="/src/assets/btnScroll.png">
