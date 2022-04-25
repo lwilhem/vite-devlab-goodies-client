@@ -15,7 +15,6 @@ const router = createRouter({
             name: 'big-shop',
             component: () => import('../components/ProductList.vue'),
         },
-
         {
             path: '/bigshop/panier',
             name: 'big-shop-panier',
@@ -40,6 +39,11 @@ const router = createRouter({
             path: '/bigshop/itemname',
             name: 'shop-item',
             component: () => import('../views/ShopItem.vue'),
+        },
+        {
+            path:'/ShopCart',
+            name:'ShopCart',
+            component: () => import('../components/ShopCart.vue')
         },
 
 
