@@ -6,7 +6,6 @@ import ShopFilter from '../components/ShopFilter.vue';
 </script>
 
 <template>
-    <ShopFilter></ShopFilter>
     <section class="aspect-video flex flex-col items-center justify-center"> <!-- SHOP WRAPPER -->
         <div class="bg-red tablet:bg-red tablet:w-4/5 tablet:h-96 tablet:bg-blue-200 tablet:flex tablet:flex-col tablet:justify-evenly tablet:items-start tablet:p-8 tablet:my-8"> <!-- ASSOS PRESENTATIONS WRAPPER -->
             <h2 class="tablet:w-full tablet:text-center tablet:text-6xl tablet:uppercase tablet:tracking-widest tablet:text-red-500 pt-6 text-center ">Nom de L'assos</h2>
@@ -35,7 +34,7 @@ import ShopFilter from '../components/ShopFilter.vue';
     </section>
     <AssosItemList></AssosItemList>
     <div class="w-full flex items-center justify-center mb-6">
-        <RouterLink to="/assos">
+        <RouterLink to="/shop-item">
             <div class="w-fit bg-indigo-700 px-8 py-4 rounded-md text-center">
                 <span class="text-white uppercase">back to Assos list</span>
             </div>

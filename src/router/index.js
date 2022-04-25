@@ -28,7 +28,7 @@ const router = createRouter({
         {
             path: '/assos',
             name: 'assos-list',
-            component: () => import('../views/assosListView.vue'),
+            component: () => import('../views/centralShopView.vue'),
         },
         {
             path: '/assos/name',
@@ -45,9 +45,6 @@ const router = createRouter({
             name:'ShopCart',
             component: () => import('../components/ShopCart.vue')
         },
-
-
-
 
     ]
 })
