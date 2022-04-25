@@ -12,7 +12,7 @@ const router = createRouter({
         {
             path: '/bigshop',
             name: 'big-shop',
-            component: () => import('../views/centralShopView.vue'),
+            component: () => import('../components/ProductList.vue'),
         },
         {
             path: '/bigshop/panier',
