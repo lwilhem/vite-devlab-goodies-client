@@ -9,11 +9,15 @@ const router = createRouter({
             name: 'home',
             component: HomeView,
         },
+<<<<<<< Updated upstream
         {
             path: '/bigshop',
             name: 'big-shop',
             component: () => import('../components/ProductList.vue'),
         },
+=======
+
+>>>>>>> Stashed changes
         {
             path: '/bigshop/panier',
             name: 'big-shop-panier',
@@ -37,8 +41,12 @@ const router = createRouter({
         {
             path: '/bigshop/itemname',
             name: 'shop-item',
-            component: () => import('../views/ShopItem.vue')
-        }
+            component: () => import('../views/ShopItem.vue'),
+        },
+
+
+
+
     ]
 })
 

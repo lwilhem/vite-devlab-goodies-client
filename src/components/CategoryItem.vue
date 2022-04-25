@@ -10,8 +10,8 @@ import { RouterLink } from 'vue-router';
             <h2 class=" font-semiboldml-60  mt-7   text-black text-xl">Product Type</h2>
                 <span class="w-full bg-black h-3  my-8 mx-10 mt-8 "></span>
             </div>
-                <section class="w-full h-auto p-8 flex flex-wrap items-center justify-center">
-                    <article v-for="item in StaticItemDisplay" :key="item.id" class="w-1/5 bg-slate-50 p-2 flex flex-col items-center justify-center m-4 rounded-md border-slate-50 drop-shadow-lg hover:drop-shadow-xl"> <!-- ITEM DISPLAY WRAPPER -->
+                <section class="tablet:w-full h-auto tablet:p-8 flex flex-wrap items-center justify-center">
+                    <article v-for="item in StaticItemDisplay" :key="item.id" class="w-1/5  bg-slate-50 tablet:p-2 flex flex-col items-center justify-center m-4 rounded-md border-slate-50 drop-shadow-lg hover:drop-shadow-xl"> <!-- ITEM DISPLAY WRAPPER -->
                         <div>   <!-- ITEM IMAGE DISPLAY -->
                                 <img :src="item.imageSrc" :alt="item.imageAlt">
                             </div>
@@ -19,20 +19,25 @@ import { RouterLink } from 'vue-router';
                         </div>
                     </article>
                 </section>
-            <section class="w-full h-auto p-8 flex flex-wrap items-center justify-center">
-                <article v-for="item in StaticItemDisplay" :key="item.id" class="w-1/5 bg-slate-50 p-2 flex flex-col items-center justify-center m-4 rounded-md border-slate-50 drop-shadow-lg hover:drop-shadow-xl"> <!-- ITEM DISPLAY WRAPPER -->
+            <section class="w-full h-auto tablet:p-8 flex flex-wrap items-center justify-center">
+                <article v-for="item in StaticItemDisplay" :key="item.id" class="w-1/5 bg-slate-50 tablet:p-2 flex flex-col items-center justify-center m-4 rounded-md border-slate-50 drop-shadow-lg hover:drop-shadow-xl">
+                  <!-- ITEM DISPLAY WRAPPER -->
                     <div>   <!-- ITEM IMAGE DISPLAY -->
                         <img :src="item.imageSrc" :alt="item.imageAlt">
                     </div>
                     <div>
+
                         <div class="flex flex-col">
                             <h3>
                                 <a :href="item.href" class="flex items-center justify-evenly">
                                     <span>
                                         {{ item.name }}
                                     </span>
-                                    <RouterLink to="/bigshop/itemname">
+                                  <RouterLink to="/bigshop/itemname">
+                                    <div class=" flex justify-center content-center">
+                                         <h2>Voir plus </h2>
                                         <ArrowCircleRightIcon class="w-4 h-4"></ArrowCircleRightIcon>
+                                    </div>
                                     </RouterLink>
                                 </a>
                             </h3>
