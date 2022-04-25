@@ -5,39 +5,73 @@ import { TrashIcon } from '@heroicons/vue/solid';
 <template>
 
 <section class="px-4 tablet:px-28">
-    <!-- <div class="px-28 inline-flex items-center w-full py-6">
-        <h3 class="color text-black text-3xl">TRENDING</h3>
-        <span class="w-full bg-black h-1 mx-10"></span>
-    </div> -->
-    <div class="w-full h-auto bg-purple-extra-light inline-flex tablet:p-6">
-        <img class="w-1/3 h-fit mt-auto mb-auto " src="../assets/product.png" alt="">
-        <div class="flex flex-col w-full justify-between gap-3 tablet:pl-16 tablet:pr-10 ">
-            <h4 class=" text-base tablet:text-2xl font-bold text-white uppercase text-center">Nom de l'article</h4>
-            <p class="text-sm tablet:text-2xl">99.99€</p>
-            <form action="">
-                <label for="quantity" class="inline-block w-32 text-sm tablet:text-2xl">Quantité: </label>
-                
-                <input type="number"  id="quantity" class=" w-24 text-black text-sm tablet:text-2xl" min="1" value="1" max="100"><br>
-            </form>
-            <form action="">
-                <label for ="size" class="inline-block w-32 text-sm tablet:text-2xl">Taille: </label>
-                <select id="size" class="w-24 text-sm tablet:text-2xl">
-                    <option value="XS">XS</option>
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                    <option value="XL">Xl</option>
-                </select>
-            </form>
-            <TrashIcon class="text-white h-6 w-6 tablet:h-8 tablet:w-8 ml-auto cursor-pointer"></TrashIcon>     
+  <!-- Options -->
+  <div class="mt-4 lg:mt-0 lg:row-span-3">
+    <h2 class="sr-only">Product information</h2>
+    <p class="text-3xl text-gray-900">{{ product.price }}</p>
+
+    <!-- Reviews -->
+    <div class="mt-6">
+      <h3 class="sr-only">Reviews</h3>
+      <div class="flex items-center">
+        <div class="flex items-center">
+          <StarIcon v-for="rating in [0, 1, 2, 3, 4]" :key="rating" :class="[reviews.average > rating ? 'text-gray-900' : 'text-gray-200', 'h-5 w-5 flex-shrink-0']" aria-hidden="true" />
         </div>
+        <p class="sr-only">{{ reviews.average }} out of 5 stars</p>
+        <a :href="reviews.href" class="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">{{ reviews.totalCount }} reviews</a>
+      </div>
     </div>
-    <div class="">
-        <p class="text-base tablet:text-2xl ">Total : 9999€</p>
-    </div>
-    <div class=" w-fit rounded-3xl bg-red-light	hover:bg-red-pink cursor-pointer ml-auto mr-auto">
-        <p class="px-24 py-4 text-2xl font-medium text-white ">Cliquer</p>
-    </div>
+
+    <form class="mt-10">
+      <!-- Colors -->
+      <div>
+        <h3 class="text-sm text-gray-900 font-medium">Color</h3>
+
+        <RadioGroup v-model="selectedColor" class="mt-4">
+          <RadioGroupLabel class="sr-only"> Choose a color </RadioGroupLabel>
+          <div class="flex items-center space-x-3">
+            <RadioGroupOption as="template" v-for="color in product.colors" :key="color.name" :value="color" v-slot="{ active, checked }">
+              <div :class="[color.selectedClass, active && checked ? 'ring ring-offset-1' : '', !active && checked ? 'ring-2' : '', '-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none']">
+                <RadioGroupLabel as="p" class="sr-only">
+                  {{ color.name }}
+                </RadioGroupLabel>
+                <span aria-hidden="true" :class="[color.class, 'h-8 w-8 border border-black border-opacity-10 rounded-full']" />
+              </div>
+            </RadioGroupOption>
+          </div>
+        </RadioGroup>
+      </div>
+
+      <!-- Sizes -->
+      <div class="mt-10">
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm text-gray-900 font-medium">Size</h3>
+          <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">Size guide</a>
+        </div>
+
+        <RadioGroup v-model="selectedSize" class="mt-4">
+          <RadioGroupLabel class="sr-only"> Choose a size </RadioGroupLabel>
+          <div class="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
+            <RadioGroupOption as="template" v-for="size in product.sizes" :key="size.name" :value="size" :disabled="!size.inStock" v-slot="{ active, checked }">
+              <div :class="[size.inStock ? 'bg-white shadow-sm text-gray-900 cursor-pointer' : 'bg-gray-50 text-gray-200 cursor-not-allowed', active ? 'ring-2 ring-indigo-500' : '', 'group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6']">
+                <RadioGroupLabel as="p">
+                  {{ size.name }}
+                </RadioGroupLabel>
+                <div v-if="size.inStock" :class="[active ? 'border' : 'border-2', checked ? 'border-indigo-500' : 'border-transparent', 'absolute -inset-px rounded-md pointer-events-none']" aria-hidden="true" />
+                <div v-else aria-hidden="true" class="absolute -inset-px rounded-md border-2 border-gray-200 pointer-events-none">
+                  <svg class="absolute inset-0 w-full h-full text-gray-200 stroke-2" viewBox="0 0 100 100" preserveAspectRatio="none" stroke="currentColor">
+                    <line x1="0" y1="100" x2="100" y2="0" vector-effect="non-scaling-stroke" />
+                  </svg>
+                </div>
+              </div>
+            </RadioGroupOption>
+          </div>
+        </RadioGroup>
+      </div>
+
+      <button type="submit" class="mt-10 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add to bag</button>
+    </form>
+  </div>
 </section>
 
 </template>
