@@ -1,19 +1,18 @@
 <script setup>
 import { ArrowCircleRightIcon } from '@heroicons/vue/outline'
-import { StaticItemDisplay } from '../utils/staticItem';
 </script>
 
 <template>
-    <section class="tablet:w-full tablet:h-auto tablet:p-8 tablet:flex tablet:flex-wrap tablet:items-center tablet:justify-center flex flex-wrap">
-      <div class="bg-bgAssos bg-cover bg-no-repeat">
+    <section class="tablet:w-full tablet:h-auto tablet:p-8 tablet:flex tablet:flex-wrap items-center justify-center flex flex-wrap tablet:bg-[url('src/assets/background_assos.svg')] bg-center bg-no-repeat" style="background-size:cover">
+      <div class="">
         <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
           <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 text-center">Liste des produits</h2>
           <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
 
 
 
-            <article v-for="product in StaticItemDisplay" :key="product.id" class="group relative">
-              <RouterLink to="/bigshop/itemname">
+            <article v-for="product in productshop" :key="product.id" class="group relative">
+              <RouterLink :to="`/bigshop/${product.id}?id=${product.id}`">
                 <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
                   <img :src="product.imageSrc" :alt="product.imageAlt" class="w-full h-full object-center object-cover lg:w-full lg:h-full" />
                 </div>
@@ -34,7 +33,7 @@ import { StaticItemDisplay } from '../utils/staticItem';
           </div>
         </div>
       </div>
-        <section class="w-full my-2 flex items-center justify-center">
+        <!-- <section class="w-full my-2 flex items-center justify-center">
             <div class="flex">
                 <div class="w-12 h-12 bg-slate-100 text-indigo-700 drop-shadow-md hover:bg-indigo-700 hover:text-slate-100 hover:drop-shadow-none rounded-md flex items-center justify-center">
                     <span>1</span>
@@ -46,16 +45,53 @@ import { StaticItemDisplay } from '../utils/staticItem';
                     <span class="text-slate-100">3</span>
                 </div>
             </div>
-        </section>
+        </section> -->
     </section>
 </template>
 
 <script>
+
+import axios from 'axios';
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const product = urlParams.get('id')
+// const res = await axios.get(`http://localhost:5005/api/shops/find/id/${product}`);
+
+
 export default {
-  setup() {
+  data() {
     return {
-      products,
+      shops: [] ,
+      item: [],
+      productshop: [], 
+      errors: []
     }
   },
+
+  // Fetches posts when the component is created.
+  created() {
+    axios.get(`http://localhost:5005/api/shops/find/id/${product}`).then(response => {
+      // JSON responses are automatically parsed.
+      this.shops = response.data.id
+    })
+    axios.get(`http://localhost:5005/api/products/findall`).then(response => {
+    this.item = response.data
+    const object = this.item
+
+    for (var i = 0; i < object.length; i++) {
+      if (object[i].shopId == product){
+        this.productshop.push(object[i])
+
+      }else{
+        console.log("nop")
+      }
+    }
+    })
+    
+    .catch(e => {
+      this.errors.push(e)
+    })
+  },
 }
+
 </script>

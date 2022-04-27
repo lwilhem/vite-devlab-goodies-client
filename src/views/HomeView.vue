@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink } from 'vue-router';
 import navbar from '../components/Navbar.vue';
+import Footer from '../components/Shopfooter.vue';
 </script>
 
 <template>
@@ -21,11 +22,5 @@ import navbar from '../components/Navbar.vue';
             <img src="../assets/img_01.png" alt="" class="w-full h-fit ">
         </div>
     </section>
-    <section class="w-full h-screen">
-        <div class="flex items-center"> <!-- TITLE WRAPPER-->
-            <HeartIcon class="w-24 h-24 text-red-500 mx-4"></HeartIcon>
-            <h1 class="text-red-500 text-6xl uppercase font-extrabold">GOODIES</h1>
-        </div>
-    </section>
-
+    <Footer></Footer>
 </template>

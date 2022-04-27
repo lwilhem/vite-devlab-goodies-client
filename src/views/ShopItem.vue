@@ -1,29 +1,10 @@
 <script setup>
-import navbar from '../components/Navbar.vue';
+// import navbar from '../components/Navbar.vue';
 </script>
 <template>
   <div class="bg-white">
       
     <div class="pt-6">
-        <!-- <nav aria-label="Breadcrumb">
-            <ol role="list" class="max-w-2xl mx-auto px-4 flex items-center space-x-2 sm:px-6 lg:max-w-7xl lg:px-8">
-            <li v-for="breadcrumb in product.breadcrumbs" :key="breadcrumb.id">
-                <div class="flex items-center">
-                <a :href="breadcrumb.href" class="mr-2 text-sm font-medium text-gray-900">
-                    {{ breadcrumb.name }}
-                </a>
-                <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-4 h-5 text-gray-300">
-                    <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-                </svg>
-                </div>
-            </li>
-            <li class="text-sm">
-                <a :href="product.href" aria-current="page" class="font-medium text-gray-500 hover:text-gray-600">
-                {{ product.name }}
-                </a>
-            </li>
-            </ol>
-        </nav> -->
 
       <!-- Image gallery -->
       <div class="mt-6 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
@@ -47,14 +28,14 @@ import navbar from '../components/Navbar.vue';
       <div class="max-w-2xl mx-auto pt-10 pb-16 px-4 sm:px-6 lg:max-w-7xl lg:pt-16 lg:pb-24 lg:px-8 lg:grid lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8">
         <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
           <h1 class="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
-            {{ product.name }}
+            {{ productshop.name }}
           </h1>
         </div>
 
         <!-- Options -->
         <div class="mt-4 lg:mt-0 lg:row-span-3">
           <h2 class="sr-only">Product information</h2>
-          <p class="text-3xl text-gray-900">{{ product.price }}</p>
+          <p class="text-3xl text-gray-900">{{ productshop.price }} €</p>
 
           <!-- Reviews -->
           <div class="mt-6">
@@ -114,8 +95,9 @@ import navbar from '../components/Navbar.vue';
                 </div>
               </RadioGroup>
             </div>
-
-            <button type="submit"  class="mt-10 w-full bg-black border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add to bag</button>
+            <RouterLink :to="`/ShopCart/${productshop.id}?id=${productshop.id}?color=blue?size=xl`">
+            <button type="submit" onclick=" a" class="mt-10 w-full bg-black border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add to bag</button>
+            </RouterLink>
           </form>
         </div>
 
@@ -126,18 +108,6 @@ import navbar from '../components/Navbar.vue';
 
             <div class="space-y-6">
               <p class="text-base text-gray-900">{{ product.description }}</p>
-            </div>
-          </div>
-
-          <div class="mt-10">
-            <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
-
-            <div class="mt-4">
-              <ul role="list" class="pl-4 list-disc text-sm space-y-2">
-                <li v-for="highlight in product.highlights" :key="highlight" class="text-gray-400">
-                  <span class="text-gray-600">{{ highlight }}</span>
-                </li>
-              </ul>
             </div>
           </div>
 
@@ -155,14 +125,58 @@ import navbar from '../components/Navbar.vue';
 </template>
 
 <script>
+
+import axios from 'axios';
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const producter = urlParams.get('id')
+
+
+
+
+
 import { ref } from 'vue'
 import { StarIcon } from '@heroicons/vue/solid'
 import { RadioGroup, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
 
+export default {
+  components: {
+    RadioGroup,
+    RadioGroupLabel,
+    RadioGroupOption,
+    StarIcon,
+  },
+  setup() {
+    const selectedColor = ref(product.colors[0])
+    const selectedSize = ref(product.sizes[2])
+
+    return {
+      product,
+      reviews,
+      selectedColor,
+      selectedSize,
+    }
+  },
+  data() {
+    return {
+      productshop: [], 
+      errors: []
+    }
+  },
+
+  // Fetches posts when the component is created.
+  created() {
+    axios.get(`http://localhost:5005/api/products/find/${producter}`).then(response => {
+      // JSON responses are automatically parsed.
+      this.productshop = response.data
+    })
+    
+    .catch(e => {
+      this.errors.push(e)
+    })
+  },
+}
 const product = {
-  name: 'Basic Tee 6-Pack',
-  price: '$192',
-  href: '#',
   breadcrumbs: [
     { id: 1, name: 'Men', href: '#' },
     { id: 2, name: 'Clothing', href: '#' },
@@ -194,7 +208,7 @@ const product = {
     { name: 'XXS', inStock: false },
     { name: 'XS', inStock: true },
     { name: 'S', inStock: true },
-    { name: 'M', inStock: true },
+    { name: 'M', inStock: false },
     { name: 'L', inStock: true },
     { name: 'XL', inStock: true },
     { name: '2XL', inStock: true },
@@ -202,34 +216,10 @@ const product = {
   ],
   description:
     'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
-  highlights: [
-    'Hand cut and sewn locally',
-    'Dyed with our proprietary colors',
-    'Pre-washed & pre-shrunk',
-    'Ultra-soft 100% cotton',
-  ],
   details:
     'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
 }
 const reviews = { href: '#', average: 4, totalCount: 117 }
 
-export default {
-  components: {
-    RadioGroup,
-    RadioGroupLabel,
-    RadioGroupOption,
-    StarIcon,
-  },
-  setup() {
-    const selectedColor = ref(product.colors[0])
-    const selectedSize = ref(product.sizes[2])
 
-    return {
-      product,
-      reviews,
-      selectedColor,
-      selectedSize,
-    }
-  },
-}
 </script>

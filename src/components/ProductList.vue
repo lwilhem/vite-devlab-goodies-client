@@ -1,9 +1,9 @@
 <script setup>
 import { ArrowCircleRightIcon } from '@heroicons/vue/outline'
-import { StaticItemDisplay } from '../utils/staticItem';
 import { RouterLink } from 'vue-router';
 </script>
 <template>
+
     <div class="bg-white">
         <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
             <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">Customers also purchased</h2>
@@ -11,8 +11,8 @@ import { RouterLink } from 'vue-router';
 
         
         
-            <article v-for="product in StaticItemDisplay" :key="product.id" class="group relative">
-                <RouterLink to="/bigshop/itemname">
+            <article v-for="product in productshop" :key="product.id" class="group relative">
+                <RouterLink :to="`/bigshop/${product.id}?id=${product.id}`">
                 <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
                     <img :src="product.imageSrc" :alt="product.imageAlt" class="w-full h-full object-center object-cover lg:w-full lg:h-full" />
                 </div>
@@ -24,7 +24,6 @@ import { RouterLink } from 'vue-router';
                         {{ product.name }}
                         </a>
                     </h3>
-                    <p class="mt-1 text-sm text-gray-500">{{ product.color }}</p>
                     </div>
                 <p class="text-sm font-medium text-gray-900">{{ product.price }}</p>
             </div>
@@ -36,11 +35,32 @@ import { RouterLink } from 'vue-router';
 </template>
 
 <script>
+import axios from 'axios';
+
+// const queryString = window.location.search;
+// const urlParams = new URLSearchParams(queryString);
+// const product = urlParams.get('id')
 export default {
-  setup() {
+    
+  data() {
     return {
-      products,
+      productshop: [], 
+      errors: []
     }
   },
+
+  // Fetches posts when the component is created.
+  created() {
+    axios.get(`http://localhost:5005/api/products/findall`).then(response => {
+      // JSON responses are automatically parsed.
+      this.productshop = response.data
+      console.log(this.productshop)
+    })
+    
+    .catch(e => {
+      this.errors.push(e)
+    })
+  },
+
 }
 </script>

@@ -8,52 +8,60 @@ import { RouterLink } from 'vue-router';
     <div class="bg-red-light">
         <div class="flex flex-row my-8 mx-8 mt-8 text-5xl">
             <h2 class=" font-semiboldml-60  mt-7 w-40 text-black text-xl">Product Type</h2>
-                <span class="w-screen bg-black h-3  my-8 mx-10 mt-8 "></span>
-            </div>
-                <section class="tablet:w-full h-auto tablet:p-8 flex flex-wrap items-center justify-center gap-10">
-                    <article v-for="product in StaticItemDisplay" :key="product.id" class="group relative">
+            <span class="w-screen bg-black h-3  my-8 mx-10 mt-8 "></span>
+        </div>
+        <section class="tablet:w-full h-auto tablet:p-8 flex flex-wrap items-center justify-center gap-10">
+            <li><a href="#">T-shirt</a></li>
+            <li><a href="#">Pull</a></li>
+            <li><a href="#">Sweet</a></li>
+        </section>
+        <div class="bg-red-light">
+            <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+                <h2 class="text-4xl font-extrabold tracking-tight text-gray-900 text-center">Liste des associations</h2>
+                
+            <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                <article v-for="shop in shops" :key="shop.id" class="group relative">
+                    <RouterLink :to="`/assos/${shop.id}?id=${shop.id}`">
                         <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                            <img :src="product.imageSrc" :alt="product.imageAlt" class="w-full h-full object-center object-cover lg:w-full lg:h-full" />
+                            <img src="https://static.pullandbear.net/2/static2/itxwebstandard/images/home/2021-05/28/MOVIES.jpg?v=20220426205714">
                         </div>
-                        <div class="mt-4 flex justify-between">
-                            <div>
-                                <h3 class="text-sm text-gray-700"></h3>
-                            </div>
+                        <div class="mt-4 flex justify-center">
+                                <h3 class="text-3xl text-gray-700">{{ shop.name }}</h3>
+                                
                         </div>
-                    </article>
-                </section>
-            <div class="bg-red-light">
-        <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-            <h2 class="text-4xl font-extrabold tracking-tight text-gray-900 text-center">Liste des associations</h2>
-        <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-
-        
-        
-            <article v-for="product in StaticItemDisplay" :key="product.id" class="group relative">
-                <RouterLink to="/assos/name">
-                <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                    <img :src="product.imageSrc" :alt="product.imageAlt" class="w-full h-full object-center object-cover lg:w-full lg:h-full" />
-                </div>
-                <div class="mt-4 flex justify-between">
-                    <div>
-                    <h3 class="text-sm text-gray-700">
-                        <a :href="product.href">
-                        <span aria-hidden="true" class="absolute inset-0"> </span>
-                        <h4 class="text-3xl">{{ product.name }}</h4>
-                        </a>
-                    </h3>
-                    <p class="mt-1 text-sm text-gray-500">{{ product.color }}</p>
-                    </div>
-                <p class="text-sm font-medium text-gray-900">{{ product.price }}</p>
+                    </RouterLink>
+                </article>
             </div>
-            </RouterLink>
-            </article>
         </div>
         </div>
-    </div>
 
         <a>
             <img sr="/src/assets/btnScroll.png">
         </a>
     </div>    
 </template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      shops: [],
+      errors: []
+    }
+  },
+
+  // Fetches posts when the component is created.
+  created() {
+    axios.get(`http://localhost:5005/api/shops/findall`)
+    .then(response => {
+      // JSON responses are automatically parsed.
+      this.shops = response.data
+    })
+    .catch(e => {
+      this.errors.push(e)
+    })
+  }
+}
+</script>

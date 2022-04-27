@@ -31,17 +31,17 @@ const router = createRouter({
             component: () => import('../views/centralShopView.vue'),
         },
         {
-            path: '/assos/name',
+            path: '/assos/:name',
             name: 'assos-shop',
             component: () => import('../views/assosShopView.vue')
         },
         {
-            path: '/bigshop/itemname',
+            path: '/bigshop/:itemname',
             name: 'shop-item',
             component: () => import('../views/ShopItem.vue'),
         },
         {
-            path:'/ShopCart',
+            path:'/ShopCart/:id',
             name:'ShopCart',
             component: () => import('../components/ShopCart.vue')
         },
