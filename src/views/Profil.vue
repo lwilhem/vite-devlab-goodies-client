@@ -32,8 +32,7 @@ export default {
   },
   methods: {
     logout: function () {
-      this.$store.commit('logout');
-      this.$router.push('/');
+        window.localStorage.clear();
     }
   }
 }
