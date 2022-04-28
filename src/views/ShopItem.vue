@@ -125,7 +125,6 @@
 </template>
 
 <script>
-
 import axios from 'axios';
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
