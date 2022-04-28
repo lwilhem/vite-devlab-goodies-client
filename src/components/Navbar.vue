@@ -32,7 +32,7 @@ import { RouterLink } from 'vue-router'
             <span class="text-lg">Le Shop</span>
           </div>
         </RouterLink>
-
+        <button @click="tokken()">tokken</button>
     <RouterLink to="/aboutus">
           <div class="flex my-0 mx-3 items-center justify-center">
             <cake>
@@ -101,6 +101,11 @@ export default {
     BellIcon,
     MenuIcon,
     XIcon,
+  },
+  methods:{
+    tokken: function(){
+      console.log(this.$store.state.user);
+    }
   },
   setup() {
     return {

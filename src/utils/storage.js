@@ -3,22 +3,48 @@ import axios from 'axios';
 const instance = axios.create({
   baseURL: 'http://localhost:5005/api/auth'
 });
+let user = localStorage.getItem('user');
+
+if (!user) {
+    user = {
+       userId: -1,
+       token: '',
+     }; 
+   } else {
+     try {
+       user = JSON.parse(user);
+       instance.defaults.headers.common['Authorization'] = user.token;
+     } catch (ex) {
+       user = {
+         userId: -1,
+         token: '',
+       };
+     }
+   }
 
 const store = createStore({
     state: {
         status: '',
-        user: {
-            userId: -1,
-            token: '',
+        user: user,
+        userInfos: {
+        //   nom:'',
+          username: '',
+          email: '',
+        //   photo: '',
         },
-    },
+      },
     mutations: {
         setStatus: function (state, status){
             state.status = status;
         },
         logUser: function (state, user){
+            instance.defaults.headers.common['Authorization'] = user.token;
+            localStorage.setItem('user', JSON.stringify(user));
             state.user = user;
-        }
+        },
+        userInfos: function (state, userInfos) {
+            state.userInfos = userInfos;
+          },
     },
     actions: {
         login: ({commit}, userInfos) => {
@@ -26,7 +52,7 @@ const store = createStore({
             return new Promise((resolve, reject) => {
                 instance.post('/login', userInfos)
             .then(function(response){
-                // window.location.href = 'profile';
+                window.location.href = 'profile';
                 commit('setStatus', '');
                 commit('logUser', response.data);
                 console.log(response.data)
@@ -50,18 +76,15 @@ const store = createStore({
                 console.log(error);
             })
             })
-        }
+        },
+        getUserInfos: ({commit}) => {
+            instance.post('/infos')
+            .then(function (response) {
+              commit('userInfos', response.data.infos);
+            })
+            .catch(function () {
+            });
+          }
     }
 })
-// axios.post('http://localhost:5005/api/auth/register', {
-//     username: 'Fred',
-//     email: 'Flintstone',
-//     password: 'blabla'
-//   })
-//   .then(function (response) {
-//     console.log(response);
-//   })
-//   .catch(function (error) {
-//     console.log(error);
-//   });
 export default store
