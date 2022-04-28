@@ -132,4 +132,4 @@ export default {
       margin-right: auto;
       border-radius: 1rem ;
   }
-</style>>
+</style>
