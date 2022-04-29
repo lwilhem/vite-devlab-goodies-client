@@ -29,7 +29,7 @@ export default {
 
 <template>
   <body>
-  <div class="container mt-5">
+  <div class="container bg-purple-dark text-white p-5 mt-5">
     <form method="post">
       <div class="row mb-3">
         <label for="inputName" class="col-sm-2 col-form-label">Nom du produit</label>

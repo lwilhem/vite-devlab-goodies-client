@@ -60,7 +60,7 @@ export default {
 </script>
 <template>
   <body>
-  <div class="container ">
+  <div class="container bg-blend-lighten text-white p-5">
     <h1>Classment Meilleur Vente</h1>
     <table class="table table-responsive">
       <thead>

@@ -1,10 +1,14 @@
 <script setup>
 import { RouterView } from 'vue-router'
+import axios from "axios";
 import Navbar from "./components/Navbar.vue";
+import NavAdmin from "./components/NavAdmin.vue";
+
 </script>
 
 <template>
-  <Navbar></Navbar>
+  <navbar></navbar>
+  <NavAdmin></NavAdmin>
   <RouterView></RouterView>
 </template>
 
