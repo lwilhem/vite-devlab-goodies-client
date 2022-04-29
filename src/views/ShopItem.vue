@@ -67,7 +67,7 @@
                 </select>
             </div>
             <RouterLink :to="`/ShopCart/${productshop.id}?id=${productshop.id}?color=blue?size=xl`">
-            <button type="submit" onclick=" a" class="mt-10 w-full bg-black border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add to bag</button>
+            <button type="submit" @onclick="createCart()" class="mt-10 w-full bg-black border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add to bag</button>
             </RouterLink>
           </form>
         </div>
@@ -101,12 +101,6 @@ import { StarIcon } from '@heroicons/vue/solid'
 import { RadioGroup, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
 import axios from 'axios';
 
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const producter = urlParams.get('id')
-
-
-
 export default {
   components: {
     RadioGroup,
@@ -115,9 +109,6 @@ export default {
     StarIcon,
   },
   setup() {
-    const selectedColor = ref(product.colors[0])
-    const selectedSize = ref(product.sizes[2])
-
     return {
       product,
     }
@@ -130,19 +121,29 @@ export default {
       selected: '',
     }
   },
-  
+   mounted:function(){
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const producter = urlParams.get('id')
+        this.method1(producter) //method1 will execute at pageload
+  },
 
-  // Fetches posts when the component is created.
+  methods:{
+        method1:function(producter){
+            axios.get(`http://localhost:5005/api/products/find/${producter}`).then(response => {
+            // JSON responses are automatically parsed.
+            this.productshop = response.data
+          })
+          
+          .catch(e => {
+            this.errors.push(e)
+          })
+           
+
+        }
+     },
   created() {
-    axios.post(`http://localhost:5005/api/products/find/${producter}`)
-    axios.get(`http://localhost:5005/api/products/find/${producter}`).then(response => {
-      // JSON responses are automatically parsed.
-      this.productshop = response.data
-    })
     
-    .catch(e => {
-      this.errors.push(e)
-    })
   },
 }
 const product = {

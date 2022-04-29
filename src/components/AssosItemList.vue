@@ -14,8 +14,7 @@ import { ArrowCircleRightIcon } from '@heroicons/vue/outline'
             <article v-for="product in productshop" :key="product.id" class="group relative">
               <RouterLink :to="`/bigshop/${product.id}?id=${product.id}`">
                 <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                                              <img src="https://static.pullandbear.net/2/static2/itxwebstandard/images/home/2021-05/28/MOVIES.jpg?v=20220426205714">
-
+                  <img src="https://static.pullandbear.net/2/static2/itxwebstandard/images/home/2021-05/28/MOVIES.jpg?v=20220426205714">
                 </div>
                 <div class="mt-4 flex justify-between">
                   <div>
@@ -53,10 +52,6 @@ import { ArrowCircleRightIcon } from '@heroicons/vue/outline'
 <script>
 
 import axios from 'axios';
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const product = urlParams.get('id')
-// const res = await axios.get(`http://localhost:5005/api/shops/find/id/${product}`);
 
 
 export default {
@@ -68,10 +63,15 @@ export default {
       errors: []
     }
   },
-
-  // Fetches posts when the component is created.
-  created() {
-    axios.get(`http://localhost:5005/api/shops/find/id/${product}`).then(response => {
+  mounted:function(){
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const product = urlParams.get('id')
+        this.method1(product) //method1 will execute at pageload
+  },
+  methods:{
+        method1:function(product){
+            axios.get(`http://localhost:5005/api/shops/find/id/${product}`).then(response => {
       // JSON responses are automatically parsed.
       this.shops = response.data.id
     })
@@ -92,6 +92,10 @@ export default {
     .catch(e => {
       this.errors.push(e)
     })
+        }
+     },
+  created() {
+    
   },
 }
 

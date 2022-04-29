@@ -3,6 +3,7 @@ import axios from 'axios';
 const instance = axios.create({
   baseURL: 'http://localhost:5005/api/auth'
 });
+
 let user = localStorage.getItem('user');
 
 if (!user) {
@@ -13,7 +14,7 @@ if (!user) {
    } else {
      try {
        user = JSON.parse(user);
-       instance.defaults.headers.common['Authorization'] = user.token;
+       instance.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
      } catch (ex) {
        user = {
          userId: -1,
@@ -32,6 +33,10 @@ const store = createStore({
           email: '',
         //   photo: '',
         },
+        userInfos: {
+            ProductId: '',
+            ProductNumber: '',
+          },
       },
     mutations: {
         setStatus: function (state, status){
@@ -55,7 +60,7 @@ const store = createStore({
                 window.location.href = 'profile';
                 commit('setStatus', '');
                 commit('logUser', response.data);
-                console.log(response.data)
+                // console.log(response.data)
             })
             .catch(function(error){
                 commit('setStatus', 'error_login');
@@ -79,13 +84,28 @@ const store = createStore({
         },
         getUserInfos: ({commit}) => {
             instance.get('/profile')
-            .then(function (response) {
-              console.log(response)
+            .then(function (response) { 
+
               commit('userInfos', response.data.infos);
             })
             .catch(function () {
             });
-          }
+            
+          },
+        //   createCart: ({commit}, cartInfos) => {
+        //     return new Promise((resolve, reject) => {
+        //         commit;
+        //     instance.post(`1/cart/add/product`, cartInfos)
+        //     .then(function(response){
+        //         commit('setStatus', 'created');
+        //         console.log(response)
+        //     })
+        //     .catch(function(error){
+        //         commit('setStatus', 'error_create');
+        //         console.log(error);
+        //     })
+        //     })
+        // },
     }
 })
 export default store

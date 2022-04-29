@@ -55,7 +55,26 @@ const router = createRouter({
             name:'ShopCart',
             component: () => import('../components/ShopCart.vue')
         },
-
+        {
+            path:'/admin/user',
+            name:'addUser',
+            component: () => import('../components/AddUser.vue')
+        },
+        {
+            path:'/admin/Asso',
+            name:'addAsso',
+            component: () => import('../components/AddAsso.vue')
+        },
+        {
+            path:'/vendeur',
+            name:'Dashboard',
+            component: () => import('../components/Dashboard.vue')
+        },
+        {
+            path:'/vendeur/produit',
+            name:'produit',
+            component: () => import('../components/AddProduit.vue')
+        },
     ]
 })
 

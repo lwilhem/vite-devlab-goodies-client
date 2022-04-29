@@ -69,6 +69,8 @@ export default {
     },
     ...mapState(['status'])
   },
+  mounted: function () {
+  },
   methods: {
     switchToCreateAccount: function () {
       this.mode = 'create';
