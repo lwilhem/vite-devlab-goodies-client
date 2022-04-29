@@ -5,7 +5,7 @@
     <!-- <p>{{user.prenom}} {{user.nom}} {{user.email}}</p> -->
     <!-- <img :src="user.photo"/> -->
     <div class="form-row">
-      <button @click="getInfo()" class="button">
+      <button @click="logout()" class="button">
         Déconnexion
       </button>
     </div>
@@ -45,6 +45,10 @@ export default {
     }),
   },
   methods: {
+    logout: function () {
+        window.localStorage.clear();
+        window.onload();
+    },
     getInfo: async function() {
       console.log(this.$store.state.user.access_token)
       const test = await axios.get('http://localhost:5005/api/auth/profile', {

@@ -1,7 +1,12 @@
 import { createStore } from "vuex";
 import axios from 'axios';
+// const instance = axios.create({
+//   baseURL: 'http://localhost:5005/api/auth'
+// });
 const instance = axios.create({
-  baseURL: 'http://localhost:5005/api/auth'
+  baseURL: 'http://localhost:5005/api/',
+  timeout: 1000,
+
 });
 
 let user = localStorage.getItem('user');
@@ -14,7 +19,8 @@ if (!user) {
    } else {
      try {
        user = JSON.parse(user);
-       instance.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
+       console.log(user.access_token)
+       instance.defaults.headers.common['Authorization'] = `Bearer ${user.access_token}`;
      } catch (ex) {
        user = {
          userId: -1,
@@ -37,6 +43,11 @@ const store = createStore({
             ProductId: '',
             ProductNumber: '',
           },
+        cartInfos: {
+          shopId: '',
+          buyerId: '',
+          productId: '',
+          },
       },
     mutations: {
         setStatus: function (state, status){
@@ -55,7 +66,7 @@ const store = createStore({
         login: ({commit}, userInfos) => {
             commit('setStatus', 'loading');
             return new Promise((resolve, reject) => {
-                instance.post('/login', userInfos)
+                instance.post('/auth/login', userInfos)
             .then(function(response){
                 window.location.href = 'profile';
                 commit('setStatus', '');
@@ -71,7 +82,7 @@ const store = createStore({
         createAccount: ({commit}, userInfos) => {
             return new Promise((resolve, reject) => {
                 commit;
-            instance.post('/register', userInfos)
+            instance.post('/auth/register', userInfos)
             .then(function(response){
                 commit('setStatus', 'created');
                 console.log(response)
@@ -83,7 +94,7 @@ const store = createStore({
             })
         },
         getUserInfos: ({commit}) => {
-            instance.get('/profile')
+            instance.get('/auth/profile')
             .then(function (response) { 
 
               commit('userInfos', response.data.infos);
@@ -92,20 +103,18 @@ const store = createStore({
             });
             
           },
-        //   createCart: ({commit}, cartInfos) => {
-        //     return new Promise((resolve, reject) => {
-        //         commit;
-        //     instance.post(`1/cart/add/product`, cartInfos)
-        //     .then(function(response){
-        //         commit('setStatus', 'created');
-        //         console.log(response)
-        //     })
-        //     .catch(function(error){
-        //         commit('setStatus', 'error_create');
-        //         console.log(error);
-        //     })
-        //     })
-        // },
+          createCart: ({commit}, cartInfos) => {
+            return new Promise((resolve, reject) => {
+                commit;
+                instance.post(`/users/cart/add/5`, cartInfos)
+            .then(function(response){
+                console.log(response)
+            })
+            .catch(function(error){
+                console.log(error);
+            })
+            })
+        },
     }
 })
 export default store

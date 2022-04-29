@@ -5,7 +5,9 @@
   <div class="bg-white">
       
     <div class="pt-6">
-
+        <button @click="createCart()" class="button">
+        Create
+      </button>
       <!-- Image gallery -->
       <div class="mt-6 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
         <div class="hidden aspect-w-3 aspect-h-4 rounded-lg overflow-hidden lg:block">
@@ -66,9 +68,10 @@
                   <option>10</option>
                 </select>
             </div>
-            <RouterLink :to="`/ShopCart/${productshop.id}?id=${productshop.id}?color=blue?size=xl`">
+            <!-- <RouterLink :to="`/ShopCart/${productshop.id}?id=${productshop.id}?color=blue?size=xl`">
             <button type="submit" @onclick="createCart()" class="mt-10 w-full bg-black border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add to bag</button>
-            </RouterLink>
+            </RouterLink> -->
+            
           </form>
         </div>
 
@@ -116,9 +119,12 @@ export default {
   data() {
 
     return {
-      productshop: [], 
-      errors: [],
+      productshop: [],
+      productId: '',
+      shopId: [],
       selected: '',
+      userInfo: [],
+      errors: [],
     }
   },
    mounted:function(){
@@ -133,6 +139,9 @@ export default {
             axios.get(`http://localhost:5005/api/products/find/${producter}`).then(response => {
             // JSON responses are automatically parsed.
             this.productshop = response.data
+            this.productId = response.data.id
+            this.shopId = response.data.shopId
+            
           })
           
           .catch(e => {
@@ -140,7 +149,26 @@ export default {
           })
            
 
-        }
+        },
+        getInfo: async function() {
+        console.log(this.$store.state.user.access_token)
+        const test = await axios.get('http://localhost:5005/api/auth/profile', {
+          headers: {'Authorization':`Bearer ${this.$store.state.user.access_token}`}
+        }).then(response => {
+          this.userInfo = response.data.id
+        })
+        },
+        createCart: function () {
+        const self= this;
+        this.$store.dispatch('createCart', {
+        productId: this.productId,
+        buyerId: this.userInfo,
+        shopId: this.shopId
+      }).then(function(response){
+      }, function(error){
+          console.log(error)
+      })
+    },
      },
   created() {
     
