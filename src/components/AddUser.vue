@@ -4,10 +4,8 @@
 </sript>
 
 <template>
-  <h1 class="text-center">Liste des utillisateurs</h1>
-
-  <div class="container">
-
+  <div class="container bg-purple-dark text-white p-5 ">
+    <h1 class="text-center">Liste des utillisateurs</h1>
     <div class="row">
       <div class="col">
         <h5 class=""><a href="#">Malaterre Romain</a></h5>
