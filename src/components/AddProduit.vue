@@ -12,7 +12,7 @@ export default {
   },
 
   created() {
-    axios.get(`http://localhost:5005/api/products/find/2`).then(response => {
+    axios.post(`http://localhost:5005/products/create`).then(response => {
       // JSON responses are automatically parsed.
       this.productshop = response.data
       console.log(this.productshop)

@@ -1,13 +1,12 @@
 <script setup>
-// import navbar from '../components/Navbar.vue';
+import ShopCart from '../components/ShopCart.vue';
 </script>
 <template>
   <div class="bg-white">
-      
+    <div v-if="Cart === true">
+      <ShopCart></ShopCart>
+    </div>
     <div class="pt-6">
-        <button @click="createCart()" class="button">
-        Create
-      </button>
       <!-- Image gallery -->
       <div class="mt-6 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
         <div class="hidden aspect-w-3 aspect-h-4 rounded-lg overflow-hidden lg:block">
@@ -54,25 +53,28 @@
             <!-- Colors -->
             <div>
               <h3 class="text-sm text-gray-900 font-medium">Number</h3>
-                <select v-model="selected">
-                  <option disabled value="">Choisissez</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
-                  <option>7</option>
-                  <option>8</option>
-                  <option>9</option>
-                  <option>10</option>
-                </select>
+              <select v-model="selected">
+                <option disabled value="">Choisissez</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+              </select>
             </div>
             <!-- <RouterLink :to="`/ShopCart/${productshop.id}?id=${productshop.id}?color=blue?size=xl`">
             <button type="submit" @onclick="createCart()" class="mt-10 w-full bg-black border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add to bag</button>
             </RouterLink> -->
-            
+
           </form>
+          <button @click="createCart(); loardCart()" class="mt-10 w-full bg-black border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Ajouter au panier
+          </button>
         </div>
 
         <div class="py-10 lg:pt-6 lg:pb-16 lg:col-start-1 lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
@@ -119,6 +121,7 @@ export default {
   data() {
 
     return {
+      Cart: false,
       productshop: [],
       productId: '',
       shopId: [],
@@ -127,51 +130,54 @@ export default {
       errors: [],
     }
   },
-   mounted:function(){
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const producter = urlParams.get('id')
-        this.method1(producter) //method1 will execute at pageload
+  mounted:function(){
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const producter = urlParams.get('id')
+    this.method1(producter) //method1 will execute at pageload
   },
 
   methods:{
-        method1:function(producter){
-            axios.get(`http://localhost:5005/api/products/find/${producter}`).then(response => {
-            // JSON responses are automatically parsed.
-            this.productshop = response.data
-            this.productId = response.data.id
-            this.shopId = response.data.shopId
-            
-          })
-          
+    method1:function(producter){
+      axios.get(`http://localhost:5005/api/products/find/${producter}`).then(response => {
+        // JSON responses are automatically parsed.
+        this.productshop = response.data
+        this.productId = response.data.id
+        this.shopId = response.data.shopId
+
+      })
+
           .catch(e => {
             this.errors.push(e)
           })
-           
 
-        },
-        getInfo: async function() {
-        console.log(this.$store.state.user.access_token)
-        const test = await axios.get('http://localhost:5005/api/auth/profile', {
-          headers: {'Authorization':`Bearer ${this.$store.state.user.access_token}`}
-        }).then(response => {
-          this.userInfo = response.data.id
-        })
-        },
-        createCart: function () {
-        const self= this;
-        this.$store.dispatch('createCart', {
+
+    },
+    getInfo: async function() {
+      console.log(this.$store.state.user.access_token)
+      const test = await axios.get('http://localhost:5005/api/auth/profile', {
+        headers: {'Authorization':`Bearer ${this.$store.state.user.access_token}`}
+      }).then(response => {
+        this.userInfo = response.data.id
+      })
+    },
+    loardCart: function(){
+      this.Cart = true;
+    },
+    createCart: function () {
+      const self= this;
+      this.$store.dispatch('createCart', {
         productId: this.productId,
         buyerId: this.userInfo,
         shopId: this.shopId
       }).then(function(response){
       }, function(error){
-          console.log(error)
+        console.log(error)
       })
     },
-     },
+  },
   created() {
-    
+
   },
 }
 const product = {
@@ -194,9 +200,9 @@ const product = {
     },
   ],
   description:
-    'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
+      'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
   details:
-    'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
+      'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
 }
 const reviews = { href: '#', average: 4, totalCount: 117 }
 

@@ -29,12 +29,11 @@ import { RouterLink } from 'vue-router'
     <RouterLink to="/ShopCart/:id">
           <div class="flex my-0 mx-3 items-center justify-center">
             <cake>
-              <span class="text-lg">Panier</span>
+              <span class="text-lg font-bold ">Panier</span>
             </cake>
             
           </div>
         </RouterLink>
-          <!-- Profile dropdown -->
         </div>
       </div>
     </div>
@@ -56,7 +55,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuIt
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/vue/outline'
 
 const navigation = [
-  { name: 'Home', href: '/bigshop', current: false, placeholder: 'Dashboard'},
+  { name: 'Home', href: '/bigshop', current: false, placeholder: 'Dashboard' },
   { name: 'Les assos', href: '/assos', current: false, img: 'LightningBoltIcon'},
 ]
 

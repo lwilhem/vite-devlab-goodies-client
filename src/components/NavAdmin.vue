@@ -1,6 +1,6 @@
 <template>
-  <div class="container mb-4 mt-3 ">
-  <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+  <div class="container rounded mb-4 mt-3 ">
+  <nav class="navbar navbar-expand-lg navbar-light rounded p-8 bg-warning">
     <router-link :to="{ path: '/vendeur' }">
     <a class="navbar-brand">Accueil</a>
     </router-link>

@@ -84,21 +84,21 @@ export default {
         email: this.email,
         password: this.password,
       }).then(function () {
-        self.$router.push('/profile');
+        self.$router.push('/bigshop');
       }, function (error) {
         console.log(error);
       })
     },
     createAccount: function () {
-        const self= this;
-        this.$store.dispatch('createAccount', {
+      const self= this;
+      this.$store.dispatch('createAccount', {
         email: this.email,
         username: this.username,
         password: this.password,
       }).then(function(response){
         self.login();
       }, function(error){
-          console.log(error)
+        console.log(error)
       })
     },
   }
@@ -106,32 +106,32 @@ export default {
 </script>
 
 <style scoped>
-  .form-row {
-    display: flex;
-    margin: 16px 0px;
-    gap:16px;
-    flex-wrap: wrap;
-  }
-  .form-row__input {
-    padding:8px;
-    border: none;
-    border-radius: 8px;
-    background:#f2f2f2;
-    font-weight: 500;
-    font-size: 16px;
-    flex:1;
-    min-width: 100px;
-    color: black;
-  }
-  .form-row__input::placeholder {
-    color:#aaaaaa;
-  }
-  .button {
-      background-color:rgb(101, 101, 222);
-      color: white;
-      padding: 1rem 2rem;
-      margin-left:auto;
-      margin-right: auto;
-      border-radius: 1rem ;
-  }
+.form-row {
+  display: flex;
+  margin: 16px 0px;
+  gap:16px;
+  flex-wrap: wrap;
+}
+.form-row__input {
+  padding:8px;
+  border: none;
+  border-radius: 8px;
+  background:#f2f2f2;
+  font-weight: 500;
+  font-size: 16px;
+  flex:1;
+  min-width: 100px;
+  color: black;
+}
+.form-row__input::placeholder {
+  color:#aaaaaa;
+}
+.button {
+  background-color:rgb(101, 101, 222);
+  color: white;
+  padding: 1rem 2rem;
+  margin-left:auto;
+  margin-right: auto;
+  border-radius: 1rem ;
+}
 </style>

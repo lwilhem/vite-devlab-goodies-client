@@ -1,7 +1,7 @@
 <template>
   <div class="card">
-    <h1 class="card__title">Espace Perso</h1>
-    <p class="card__subtitle">Voilà donc qui je suis...</p>
+    <h1 class="cardtitle">Espace Perso</h1>
+    <p class="cardsubtitle">Voilà donc qui je suis...</p>
     <!-- <p>{{user.prenom}} {{user.nom}} {{user.email}}</p> -->
     <!-- <img :src="user.photo"/> -->
     <div class="form-row">
@@ -20,16 +20,6 @@ import { useJwt } from '@vueuse/integrations/useJwt'
 
 export default {
   name: 'Profile',
-  created() {
-      // axios.get(`http://localhost:5005/api/auth/profile`).then(response => {
-      //         // JSON responses are automatically parsed.
-      //         console.log(response.data)
-      //       })
-            
-      //       .catch(e => {
-      //         this.errors.push(e)
-      //       })
-    },
   mounted: function () {
     console.log(this.$store.state.userInfos);
     console.log(this.$store.state.user);
@@ -46,13 +36,13 @@ export default {
   },
   methods: {
     logout: function () {
-        window.localStorage.clear();
-        window.onload();
+      window.localStorage.clear();
+      location.reload();
     },
     getInfo: async function() {
       console.log(this.$store.state.user.access_token)
       const test = await axios.get('http://localhost:5005/api/auth/profile', {
-        headers: {'Authorization':`Bearer ${this.$store.state.user.access_token}`}
+        headers: {'Authorization':Bearer ${this.$store.state.user.access_token}}
       })
       console.log(test.data)
     }

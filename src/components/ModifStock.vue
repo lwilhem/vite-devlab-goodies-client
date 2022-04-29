@@ -1,34 +1,38 @@
+<script>
+import axios from "axios";
+
+
+axios.post()
+
+
+
+
+</script>
+
 <template>
   <div class="container text-white  ">
+    <form method="post">
   <table class="table table-dark">
     <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">id</th>
       <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Total</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Stock</th>
     </tr>
     </thead>
     <tbody>
     <tr>
       <th scope="row">1</th>
       <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
+      <td>432</td>
+      <td> <button type="button" class="btn btn-primary">+</button></td>
+      <td> <button type="button" class="btn btn-primary">-</button></td>
     </tr>
     </tbody>
   </table>
+      <button type="submit" class="btn bg-dark text-white">Submit</button>
+      </form>
   </div>
 </template>
