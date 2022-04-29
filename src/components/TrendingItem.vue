@@ -23,8 +23,6 @@ import { RouterLink } from 'vue-router';
                                         <span>{{ item.name }}</span>
                                     </a>
                                 </h3>
-                                <p>{{ item.color }}</p>
-                                <p>{{ item.price }}</p>
                             </div>
                         </div>
                 </RouterLink>
